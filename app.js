@@ -69,6 +69,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.locals.base_url = "http://localhost:3000"
+app.locals.base_url = "https://api-liburan.herokuapp.com"
 
 module.exports = app;
