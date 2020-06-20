@@ -1,0 +1,15 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Kategori</h1>
+
+<%- include('../messages.ejs') %>
+
+<%- include('table.ejs') %>
+<script>
+    $('#dataTable').on('click', '.btn-edit', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
+        $('#edit_modal').modal('show')
+        $('#edit_modal #edit_name').val(name)
+        $('#edit_modal #id').val(id)
+    })
+</script>

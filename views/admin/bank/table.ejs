@@ -1,0 +1,45 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#add_modal">
+        <i class="fas fa-plus"></i> Tambah
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+                <th>No.</th>
+                <th>Gambar</th>
+                <th>Nama Bank</th>
+                <th>Nomor Rekening</th>
+                <th>Nama Pemilik</th>
+                <th>Opsi</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% for(let i = 0; i < banks.length; i++) { %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td class="text-center">
+                    <img src="<%= base_url + '/' + banks[i].image %>" alt="<%= banks[i].name_bank%>" width="70px" />
+                  </td>
+                  <td><%= banks[i].name_bank %></td>
+                  <td><%= banks[i].account_number %></td>
+                  <td><%= banks[i].account_name %></td>
+                  <td>
+                    <a href="javascript:void(0)" type="button" class="btn btn-warning btn-sm btn-edit" data-id="<%= banks[i]._id %>" data-name_bank="<%= banks[i].name_bank %>" data-account_number="<%= banks[i].account_number %>" data-account_name="<%= banks[i].account_name %>"><i class="fas fa-edit"></i></a>
+                    <form class="d-inline" action="/admin/bank/<%= banks[i]._id %>?_method=DELETE" method="POST">
+                      <button type="submit" onclick="return confirm('Yakin ingin dihapus?')" class="btn btn-danger btn-sm btn-delete" data-id="<%= banks[i]._id %>"><i class="fas fa-trash"></i></button>
+                    </form>
+                  </td>
+                </tr>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+<%- include('add_modal.ejs') %>
+<%- include('edit_modal.ejs') %>

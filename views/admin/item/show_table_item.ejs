@@ -1,0 +1,39 @@
+<div class="tab-pane fade show active" id="show_item" role="tabpanel" aria-labelledby="home-tab">
+  <div class="card shadow mb-4 mt-4">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                  <th>No.</th>
+                  <th>Nama Item</th>
+                  <th>Harga</th>
+                  <th>Kota</th>
+                  <th>Negara</th>
+                  <th>Opsi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i = 0; i < items.length; i++) { %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td><%= items[i].title %></td>
+                  <td>$<%= items[i].price %></td>
+                  <td><%= items[i].city %></td>
+                  <td><%= items[i].country %></td>
+                  <td>
+                    <a href="/admin/item/show-image/<%= items[i]._id %>" type="button" class="btn btn-info btn-sm" data-id="<%= items[i]._id %>"><i class="fas fa-image"></i></a>
+                    <a href="/admin/item/<%= items[i]._id %>" type="button" class="btn btn-warning btn-sm btn-edit"><i class="fas fa-edit"></i></a>
+                    <form class="d-inline" action="/admin/item/<%= items[i]._id %>?_method=DELETE" method="POST">
+                      <button type="submit" onclick="return confirm('Yakin ingin dihapus?')" class="btn btn-danger btn-sm btn-delete" data-id="<%= items[i]._id %>"><i class="fas fa-trash"></i></button>
+                    </form>
+                    <a href="/admin/item/show-detail-item/<%= items[i]._id %>" type="button" class="btn btn-success btn-sm" data-id="<%= items[i]._id %>"><i class="fas fa-plus"></i></a>
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</div>

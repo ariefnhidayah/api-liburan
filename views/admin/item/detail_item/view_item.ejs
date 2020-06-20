@@ -1,0 +1,52 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Detail Item</h1>
+
+<%- include('../../messages.ejs') %>
+
+<div class="card">
+    <div class="card-body">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#show_feature" role="tab" aria-controls="home" aria-selected="true">Feature</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#show_activity" role="tab" aria-controls="profile" aria-selected="false">Activity</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="tab-content" id="myTabContent">
+    <%- include('show_feature.ejs') %>
+    <%- include('show_activity.ejs') %>
+</div>
+
+<script>
+    $('#image').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+    $('#dataTable').on('click', '.btn-edit', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
+        const qty = $(this).data('qty')
+        const item_id = $(this).data('item_id')
+        $('#show_modal').modal('show')
+        $('#show_modal #id').val(id)
+        $('#show_modal input[name=name]').val(name)
+        $('#show_modal input[name=qty]').val(qty)
+        $('#show_modal #item_id').val(item_id)
+    })
+    $('#activity_table').on('click', '.btn-edit', function() {
+        const id = $(this).data('id')
+        const name = $(this).data('name')
+        const type = $(this).data('type')
+        const item_id = $(this).data('item_id')
+        $('#show_modal_activity').modal('show')
+        $('#show_modal_activity input[name=id]').val(id)
+        $('#show_modal_activity input[name=item_id]').val(item_id)
+        $('#show_modal_activity input[name=name]').val(name)
+        $('#show_modal_activity input[name=type]').val(type)
+    })
+</script>

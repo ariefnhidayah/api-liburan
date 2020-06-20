@@ -1,0 +1,67 @@
+<div class="tab-pane fade show active" id="show_feature" role="tabpanel" aria-labelledby="home-tab">
+    <div class="card shadow mb-4 mt-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <form method="POST" action="/admin/item/add/feature" enctype="multipart/form-data">
+                        <input type="hidden" value="<%= item_id %>" name="item_id">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" class="form-control" id="name_feature" name="name" placeholder="Masukkan Nama" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Kuantitas</label>
+                            <input type="number" class="form-control" id="qty" name="qty" placeholder="Masukkan Kuantitas" required>
+                        </div>
+                        <label>Gambar</label>
+                        <div class="input-group form-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image_feature" aria-describedby="image" name="image">
+                                <label class="custom-file-label" for="image">Upload Gambar</label>
+                                </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <a href="/admin/item" class="btn btn-info">Kembali</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-7">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama</th>
+                                <th>Kuantitas</th>
+                                <th>Gambar</th>
+                                <th>Opsi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i = 0; i < features.length; i++) { %>
+                                <tr>
+                                    <td><%= i + 1 %></td>
+                                    <td><%= features[i].name %></td>
+                                    <td><%= features[i].qty %></td>
+                                    <td>
+                                        <img src="<%= base_url + '/' + features[i].image %>" alt="<%= features[i].name%>" width="100px" />
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0)" type="button" class="btn btn-warning btn-sm btn-edit" data-id="<%= features[i]._id %>" data-name="<%= features[i].name %>" data-qty="<%= features[i].qty %>" data-item_id="<%= item_id %>"><i class="fas fa-edit"></i></a>
+                                        <form action="/admin/item/delete/feature/<%= features[i]._id %>/<%= item_id %>?_method=DELETE" method="POST" class="d-inline">
+                                            <button type="submit" onclick="return confirm('Yakin ingin dihapus?')" class="btn btn-danger btn-sm btn-delete" data-id="<%= features[i]._id %>"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <%- include('show_modal_feature.ejs') %>

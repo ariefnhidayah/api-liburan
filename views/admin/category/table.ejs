@@ -1,0 +1,37 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#add_modal">
+        <i class="fas fa-plus"></i> Tambah
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Opsi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i = 0; i < categories.length; i++) { %>
+              <tr>
+                <td><%- i + 1 %></td>
+                <td><%- categories[i].name %></td>
+                <td>
+                  <a href="javascript:void(0)" type="button" class="btn btn-warning btn-sm btn-edit" data-id="<%= categories[i]._id %>" data-name="<%= categories[i].name %>"><i class="fas fa-edit"></i></a>
+                  <form class="d-inline" action="/admin/category/<%= categories[i]._id %>?_method=DELETE" method="POST">
+                    <button type="submit" onclick="return confirm('Yakin ingin dihapus?')" class="btn btn-danger btn-sm btn-delete" data-id="<%= categories[i]._id %>"><i class="fas fa-trash"></i></button>
+                  </form>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+<%- include('add_modal.ejs') %>
+<%- include('edit_modal.ejs') %>

@@ -1,0 +1,59 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800"><%= (action == 'image') ? 'Daftar Gambar' : 'Item'  %></h1>
+
+<%- include('../messages.ejs') %>
+
+<% if(action == 'view') { %>
+    <div class="card">
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#show_item" role="tab" aria-controls="home" aria-selected="true">Lihat Item</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#add_item" role="tab" aria-controls="profile" aria-selected="false">Tambah Item</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content" id="myTabContent">
+        <%- include('show_table_item.ejs') %>
+        <%- include('add_item.ejs')%>
+    </div>
+<% } else if (action == 'image') { %>
+    <div class="card">
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#show_images" role="tab" aria-controls="home" aria-selected="true">Lihat Gambar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content" id="myTabContent">
+        <%- include('show_image_item.ejs') %>
+    </div>
+<% } else { %>
+    <div class="card">
+        <div class="card-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#show_edit_item" role="tab" aria-controls="home" aria-selected="true">Detail Item</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content" id="myTabContent">
+        <%- include('edit_item.ejs') %>
+    </div>
+<% } %>
+
+<script>
+    CKEDITOR.replace( 'description' );
+    $('#image').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>

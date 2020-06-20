@@ -1,0 +1,31 @@
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Bank</h1>
+
+<%- include('../messages.ejs') %>
+
+<%- include('table.ejs') %>
+<script>
+    $('#dataTable').on('click', '.btn-edit', function() {
+        const id = $(this).data('id')
+        const name_bank = $(this).data('name_bank')
+        const account_number = $(this).data('account_number')
+        const account_name = $(this).data('account_name')
+        $('#edit_modal').modal('show')
+        $('#edit_modal #edit_name_bank').val(name_bank)
+        $('#edit_modal #id').val(id)
+        $('#edit_modal #edit_account_number').val(account_number)
+        $('#edit_modal #edit_account_name').val(account_name)
+    })
+    $('#image').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+    $('#edit_image').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
