@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -36,6 +37,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: null }
 }))
+app.use(cors());
 app.use(flash())
 app.use(logger('dev'));
 app.use(express.json());
