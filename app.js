@@ -69,7 +69,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.locals.base_url = "https://api-liburan.herokuapp.com"
+app.locals.base_url = "https://staycation.aquastoreid.com/"
 
 var debug = require('debug')('api:server');
 var http = require('http');
