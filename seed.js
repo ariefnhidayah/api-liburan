@@ -2,7 +2,7 @@ var seeder = require('mongoose-seed');
 var mongoose = require('mongoose');
 
 // Connect to MongoDB via Mongoose
-seeder.connect('mongodb+srv://dbuser:rahasia2020@cluster0-gyx6b.mongodb.net/db_liburan?retryWrites=true&w=majority', {
+seeder.connect('mongodb+srv://dbuser:AL5lU8NS19hQ80wk@cluster0.gyx6b.mongodb.net/db_liburan?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
